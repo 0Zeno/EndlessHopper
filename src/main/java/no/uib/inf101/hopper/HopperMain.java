@@ -2,13 +2,15 @@ package no.uib.inf101.hopper;
 
 import javax.swing.*;
 
+import no.uib.inf101.hopper.model.HopperModel;
 import no.uib.inf101.hopper.view.HopperView;
 
 
 public class HopperMain {
   public static final String WINDOW_TITLE = "Endless Hopper";
   public static void main(String[] args) {
-    HopperView view = new HopperView();
+    HopperModel model = new HopperModel();
+    HopperView view = new HopperView(model);
 
 
     JFrame frame = new JFrame(WINDOW_TITLE);

@@ -9,23 +9,20 @@ import java.util.ArrayList;
 
 
 public class HopperView extends JPanel {
-        ArrayList<Platform> platforms;
         private final ColorTheme colorTheme;
+        private IViewableHopperModel viewableHopperModel;
 
 
         private static final double OUTERMARGIN = 10;
 
-        public HopperView() {
+        public HopperView(IViewableHopperModel viewableHopperModel) {
                 this.setFocusable(true);
                 this.setPreferredSize(new Dimension(600, 700));
                 this.colorTheme = new ColorTheme();
+                this.viewableHopperModel = viewableHopperModel;
                 Color bg = colorTheme.getBackgroundColor();
                 this.setBackground(bg);
-                this.platforms = new ArrayList<>();
-                for (int i = 0; i < 7; i++) {
-                        this.platforms.add(new Platform(150, 'L', 600 - i * 100, 125,
-                                25, i));
-                }
+
         }
 
         private void drawGame(Graphics2D g2) {
@@ -37,7 +34,9 @@ public class HopperView extends JPanel {
                 g2.setColor(colorTheme.getBackgroundColor());
                 g2.fill(background);
 
-                for (Platform p : this.platforms) {
+
+
+                for (Platform p : viewableHopperModel.getPlatforms()) {
                         int platformX = p.getPlatformX();
                         Rectangle2D platform = new Rectangle2D.Double(platformX,
                                 p.getPlatformY(), p.getPlatformWidth(),  p.getPlatformHeight());
@@ -51,6 +50,10 @@ public class HopperView extends JPanel {
 
 
                 }
+        }
+
+        public void magiskMetode(int i){
+
         }
 
         @Override
