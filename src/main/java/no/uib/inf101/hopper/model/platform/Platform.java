@@ -3,15 +3,16 @@ package no.uib.inf101.hopper.model.platform;
 public class Platform {
     private int x, y, width, height, platformNumber;
     private char platformSide;
-    public Platform(int x, int y, int width, int height, int platformNumber){
+    public Platform(int x, char platformSide, int y, int width, int height, int platformNumber){
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.platformNumber = platformNumber;
+        this.platformSide = getRandomPlatformSide();
     }
 
-    public char getPlatformSide(){
+    private char getRandomPlatformSide(){
         platformSide = 'R';
         if (Math.random() > 0.5){
             platformSide = 'L';
@@ -19,8 +20,12 @@ public class Platform {
         return platformSide;
     }
 
+    public char getPlatformSide(){
+        return platformSide;
+    }
+
     public int getPlatformX() {
-        if (getPlatformSide() == 'R'){
+        if (platformSide == 'R'){
             return  x * 2;
         }
         return x;

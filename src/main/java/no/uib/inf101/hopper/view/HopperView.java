@@ -23,7 +23,7 @@ public class HopperView extends JPanel {
                 this.setBackground(bg);
                 this.platforms = new ArrayList<>();
                 for (int i = 0; i < 7; i++) {
-                        this.platforms.add(new Platform(150, 600 - i * 100, 125,
+                        this.platforms.add(new Platform(150, 'L', 600 - i * 100, 125,
                                 25, i));
                 }
         }
@@ -45,9 +45,9 @@ public class HopperView extends JPanel {
                         g2.fill(platform);
                         g2.draw(platform);
                         String platformNumber = String.valueOf(p.getPlatformNumber());
-
+                        String platformSide = String.valueOf(p.getPlatformSide());
                         g2.setColor(Color.BLACK);
-                        g2.drawString(platformNumber , platformX + 10, p.getPlatformY() + 10);
+                        g2.drawString(platformNumber + platformSide, platformX + 10, p.getPlatformY() + 10);
 
 
                 }
