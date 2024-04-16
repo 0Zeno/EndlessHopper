@@ -12,7 +12,6 @@ public class HopperView extends JPanel {
         private final ColorTheme colorTheme;
         private IViewableHopperModel viewableHopperModel;
 
-
         private static final double OUTERMARGIN = 10;
 
         public HopperView(IViewableHopperModel viewableHopperModel) {
@@ -57,19 +56,15 @@ public class HopperView extends JPanel {
                 g2.fill(hoppingPlayerBox);
                 g2.draw(hoppingPlayerBox);
                 String playerSide = String.valueOf(playerBox.getSide());
-                String playerPlatformNumber = String.valueOf(playerBox.getCurrentPlatform());
+                String playerPlatformNumber = String.valueOf(playerBox.getCurrentPlatformNum());
                 g2.setColor(Color.BLACK);
                 g2.drawString(playerPlatformNumber + playerSide, playerBox.getPlayerX() + 10, playerBox.getPlayerY() + 10);
 
         }
-
-
-
         @Override
         public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2 = (Graphics2D) g;
                 drawGame(g2);
         }
-
 }

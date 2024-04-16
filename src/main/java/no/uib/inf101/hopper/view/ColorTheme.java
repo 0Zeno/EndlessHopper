@@ -7,7 +7,7 @@ public class ColorTheme implements IColorTheme {
 
     @Override
     public Color getHopperPlayerColor() {
-        return new Color(0, 255, 0);
+        return new Color(0, 255, 0  );
     }
 
     @Override
@@ -17,7 +17,7 @@ public class ColorTheme implements IColorTheme {
 
     @Override
     public Color getGameOverColor() {
-        return (new Color(0, 0, 0, 90));
+        return (new Color(255, 255, 255, 50));
     }
 
     public Color getRandomColor() {
@@ -33,7 +33,7 @@ public class ColorTheme implements IColorTheme {
             case 'R' -> Color.RED;
             case 'G' -> Color.GREEN;
             case 'B' -> Color.BLUE;
-            case 'Y' -> Color.YELLOW;
+            case 'Y' -> Color.GRAY;
             case 'O' -> Color.ORANGE;
             case 'P' -> Color.PINK;
             case 'M' -> Color.MAGENTA;

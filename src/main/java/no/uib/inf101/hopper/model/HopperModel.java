@@ -9,10 +9,12 @@ import java.util.ArrayList;
 
 public class HopperModel implements IViewableHopperModel, IControllableHopperModel {
 
+    private GameState currentGameState;
     HoppingPlayerBox playerBox;
     ArrayList<Platform> platforms;
     public HopperModel(int amountOfPlatforms){
         this.platforms = new ArrayList<>();
+        this.currentGameState = GameState.GAME_ACTIVE;
         for (int i = 0; i < amountOfPlatforms; i++) {
             this.platforms.add(new Platform(150, 'L', 600 - i * 100, 125,
                     25, i));
@@ -33,11 +35,30 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
 
     @Override
     public void movePlayer(char side) {
-        if (side == 'L') {
+        if (side == 'L' && isLeagleHop(side)) {
             playerBox = playerBox.playerHopToLeft();
-        } else if (side == 'R') {
+        } else if (side == 'R' && isLeagleHop(side)) {
             playerBox = playerBox.playerHopToRight();
         }
+        else{
+            currentGameState = GameState.GAME_OVER;
+        }
+    }
+
+    private boolean isLeagleHop(char sideToJump){
+        char nextPlatformSide = getNextPlatform().getPlatformSide();
+        return (nextPlatformSide == sideToJump);
+    }
+
+    private Platform getNextPlatform(){
+        int currentPlatform = playerBox.getCurrentPlatformNum() + 1;
+        if (currentPlatform < 8){
+            return platforms.get(currentPlatform);
+        } else {
+            return platforms.get(0);
+
+        }
+
     }
 
 
