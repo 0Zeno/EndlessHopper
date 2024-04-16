@@ -35,9 +35,9 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
 
     @Override
     public void movePlayer(char side) {
-        if (side == 'L' && isLeagleHop(side)) {
+        if (side == 'L' && isLeagleHop(side, playerBox, platforms)) {
             playerBox = playerBox.playerHopToLeft();
-        } else if (side == 'R' && isLeagleHop(side)) {
+        } else if (side == 'R' && isLeagleHop(side, playerBox, platforms)) {
             playerBox = playerBox.playerHopToRight();
         }
         else{
@@ -45,13 +45,13 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         }
     }
 
-    private boolean isLeagleHop(char sideToJump){
-        char nextPlatformSide = getNextPlatform().getPlatformSide();
+    private boolean isLeagleHop(char sideToJump, HoppingPlayerBox hopper, ArrayList<Platform> platforms){
+        char nextPlatformSide = getNextPlatform(hopper, platforms).getPlatformSide();
         return (nextPlatformSide == sideToJump);
     }
 
-    private Platform getNextPlatform(){
-        int currentPlatform = playerBox.getCurrentPlatformNum() + 1;
+    private Platform getNextPlatform(HoppingPlayerBox hopper, ArrayList<Platform> platforms){
+        int currentPlatform = hopper.getCurrentPlatformNum() + 1;
         if (currentPlatform < 8){
             return platforms.get(currentPlatform);
         } else {

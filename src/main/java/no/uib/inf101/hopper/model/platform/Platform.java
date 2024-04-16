@@ -9,10 +9,10 @@ public class Platform {
         this.width = width;
         this.height = height;
         this.platformNumber = platformNumber;
-        this.platformSide = getRandomPlatformSide();
+        this.platformSide = getRandomPlatformSide(this.platformSide);
     }
 
-    private char getRandomPlatformSide(){
+    private char getRandomPlatformSide(char platformSide){
         platformSide = 'R';
         if (Math.random() > 0.5){
             platformSide = 'L';
