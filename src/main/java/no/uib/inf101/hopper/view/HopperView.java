@@ -1,11 +1,11 @@
 package no.uib.inf101.hopper.view;
 
+import no.uib.inf101.hopper.model.player.HoppingPlayerBox;
 import no.uib.inf101.hopper.model.platform.Platform;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
 
 
 public class HopperView extends JPanel {
@@ -34,8 +34,6 @@ public class HopperView extends JPanel {
                 g2.setColor(colorTheme.getBackgroundColor());
                 g2.fill(background);
 
-
-
                 for (Platform p : viewableHopperModel.getPlatforms()) {
                         int platformX = p.getPlatformX();
                         Rectangle2D platform = new Rectangle2D.Double(platformX,
@@ -47,14 +45,25 @@ public class HopperView extends JPanel {
                         String platformSide = String.valueOf(p.getPlatformSide());
                         g2.setColor(Color.BLACK);
                         g2.drawString(platformNumber + platformSide, platformX + 10, p.getPlatformY() + 10);
-
-
                 }
+
+                HoppingPlayerBox playerBox = viewableHopperModel.getHoppingPlayerBox();
+
+                Rectangle2D hoppingPlayerBox = new Rectangle2D.Double(playerBox.getPlayerX(),
+                        playerBox.getPlayerY(),
+                        playerBox.getWidth(),
+                        playerBox.getHeight());
+                g2.setColor(colorTheme.getHopperPlayerColor());
+                g2.fill(hoppingPlayerBox);
+                g2.draw(hoppingPlayerBox);
+                String playerSide = String.valueOf(playerBox.getSide());
+                String playerPlatformNumber = String.valueOf(playerBox.getCurrentPlatform());
+                g2.setColor(Color.BLACK);
+                g2.drawString(playerPlatformNumber + playerSide, playerBox.getPlayerX() + 10, playerBox.getPlayerY() + 10);
+
         }
 
-        public void magiskMetode(int i){
 
-        }
 
         @Override
         public void paintComponent(Graphics g) {

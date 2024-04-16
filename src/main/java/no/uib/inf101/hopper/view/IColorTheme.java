@@ -4,7 +4,7 @@ import java.awt.*;
 
 public interface IColorTheme {
 
-    Color getFrameColor();
+    Color getHopperPlayerColor();
 
     Color getBackgroundColor();
 

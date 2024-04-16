@@ -6,8 +6,8 @@ public class ColorTheme implements IColorTheme {
 
 
     @Override
-    public Color getFrameColor() {
-        return new Color(255, 255, 255, 20);
+    public Color getHopperPlayerColor() {
+        return new Color(0, 255, 0);
     }
 
     @Override
