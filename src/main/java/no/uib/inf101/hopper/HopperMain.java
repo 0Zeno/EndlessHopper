@@ -3,6 +3,7 @@ package no.uib.inf101.hopper;
 import javax.swing.*;
 
 import no.uib.inf101.hopper.controller.HopperController;
+import no.uib.inf101.hopper.model.GameState;
 import no.uib.inf101.hopper.model.HopperModel;
 import no.uib.inf101.hopper.view.HopperView;
 

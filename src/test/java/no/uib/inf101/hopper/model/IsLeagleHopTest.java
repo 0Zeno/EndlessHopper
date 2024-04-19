@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class IsLeagleHopTest {
 
+    //Nøyaktig sammme som i HopperModel
     private boolean isLeagleHop(char sideToJump, HoppingPlayerBox hopper, ArrayList<Platform> platforms){
         char nextPlatformSide = getNextPlatform(hopper, platforms).getPlatformSide();
         return (nextPlatformSide == sideToJump);
@@ -33,6 +34,11 @@ public class IsLeagleHopTest {
             platforms.add(new Platform(150, 'L', 600 - i * 100, 125,
                     25, i));
         }
+
+        for (int n = 0; n < 4; n++){
+            platforms.get(n).setPlatformSide('L');
+        }
+
         HoppingPlayerBox hopper = new HoppingPlayerBox(195, 560, 40, 40, 'L', 0);
         char sideToJump = 'L';
 
@@ -45,13 +51,21 @@ public class IsLeagleHopTest {
     public void testIsLegalHopWhenNextPlatformIsOnDifferentSide() {
         ArrayList<Platform> platforms = new ArrayList<>();
         for (int i = 0; i < 4; i++){
-            platforms.add(new Platform(150, 'R', 600 - i * 100, 125,
+            platforms.add(new Platform(150, 'D', 600 - i * 100, 125,
                     25, i));
         }
         HoppingPlayerBox hopper = new HoppingPlayerBox(195, 560, 40, 40, 'L', 0);
         char sideToJump = 'R';
 
         boolean isLegal = isLeagleHop(sideToJump, hopper, platforms);
+
+        for (int n = 0; n < 4; n++){
+            if (n % 2 == 0){
+                platforms.get(n).setPlatformSide('R');
+            }else {
+                platforms.get(n).setPlatformSide('L');
+            }
+        }
 
         assertTrue(isLegal);
     }

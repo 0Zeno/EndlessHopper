@@ -10,16 +10,20 @@ import java.util.ArrayList;
 public class HopperModel implements IViewableHopperModel, IControllableHopperModel {
 
     private GameState currentGameState;
+
+    private int anchorPointPlatform;
     HoppingPlayerBox playerBox;
     ArrayList<Platform> platforms;
     public HopperModel(int amountOfPlatforms){
+        this.anchorPointPlatform = 600;
         this.platforms = new ArrayList<>();
         this.currentGameState = GameState.GAME_ACTIVE;
         for (int i = 0; i < amountOfPlatforms; i++) {
-            this.platforms.add(new Platform(150, 'L', 600 - i * 100, 125,
+            this.platforms.add(new Platform(150, 'L', anchorPointPlatform - i * 100, 125,
                     25, i));
         }
-        this.playerBox = new HoppingPlayerBox( 195, 560, 40, 40, 'L', 0);
+        this.playerBox = new HoppingPlayerBox( platforms.get(0).getPlatformX() + 50,
+                560, 40, 40, platforms.get(0).getPlatformSide(), 0);
 
     }
 
@@ -45,7 +49,32 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         }
     }
 
-    private boolean isLeagleHop(char sideToJump, HoppingPlayerBox hopper, ArrayList<Platform> platforms){
+
+    @Override
+    public GameState getGameState() {
+        return currentGameState;
+    }
+
+    @Override
+    public void resetGame() {
+
+    }
+
+    @Override
+    public int getTimerDelay() {
+        return 200;
+    }
+
+
+    @Override
+    public void clockTick() {
+           for (Platform p : platforms){
+               p.setPlatformY(1);
+           }
+    }
+
+    private boolean isLeagleHop(char sideToJump, HoppingPlayerBox hopper,
+                                ArrayList<Platform> platforms){
         char nextPlatformSide = getNextPlatform(hopper, platforms).getPlatformSide();
         return (nextPlatformSide == sideToJump);
     }
@@ -60,7 +89,6 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         }
 
     }
-
 
     /**
      * move platform to top

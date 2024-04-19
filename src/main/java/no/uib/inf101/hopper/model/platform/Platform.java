@@ -24,11 +24,16 @@ public class Platform {
         return platformSide;
     }
 
+    public void setPlatformSide(char sideToSet) {platformSide = sideToSet;}
     public int getPlatformX() {
         if (platformSide == 'R'){
             return  x * 2;
         }
         return x;
+    }
+
+    public void setPlatformY(int deltaY){
+        y += deltaY;
     }
 
     public int getPlatformY() {
