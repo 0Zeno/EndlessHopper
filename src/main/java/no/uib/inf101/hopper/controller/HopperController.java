@@ -8,12 +8,12 @@ import java.awt.event.KeyEvent;
 import javax.swing.Timer;
 
 
-public class HopperController implements java.awt.event.KeyListener{
+public class HopperController implements java.awt.event.KeyListener {
     private Timer timer;
     private IControllableHopperModel controllableHopperModel;
     private HopperView hopperView;
 
-    public HopperController(IControllableHopperModel controllableHopperModel, HopperView hopperView){
+    public HopperController(IControllableHopperModel controllableHopperModel, HopperView hopperView) {
         this.controllableHopperModel = controllableHopperModel;
         this.hopperView = hopperView;
         this.hopperView.setFocusable(true);
@@ -23,31 +23,28 @@ public class HopperController implements java.awt.event.KeyListener{
     }
 
 
-
     @Override
     public void keyPressed(KeyEvent e) {
-        //if (controllableHopperModel.getGameState() == GameState.GAME_OVER &&
-        //(e.getKeyCode() == KeyEvent.VK_ENTER)){
-        //    controllableHopperModel.resetGame();
-        //}
+        if (controllableHopperModel.getGameState() == GameState.GAME_OVER &&
+        e.getKeyCode() == KeyEvent.VK_ENTER){
+            controllableHopperModel.resetGame();
+        }
 
-        if (controllableHopperModel.getGameState() == GameState.GAME_ACTIVE || controllableHopperModel.getGameState() == GameState.DEBUG_GAME){
-            if (e.getKeyCode() == (KeyEvent.VK_LEFT)){
+        if (controllableHopperModel.getGameState() == GameState.GAME_ACTIVE || controllableHopperModel.getGameState() == GameState.DEBUG_GAME) {
+            if (e.getKeyCode() == (KeyEvent.VK_LEFT)) {
                 controllableHopperModel.movePlayer('L');
                 hopperView.repaint();
-            } else if (e.getKeyCode() == (KeyEvent.VK_RIGHT)){
+            } else if (e.getKeyCode() == (KeyEvent.VK_RIGHT)) {
                 controllableHopperModel.movePlayer('R');
                 hopperView.repaint();
             }
         }
-
     }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
-
-
 
     @Override
     public void keyReleased(KeyEvent e) {

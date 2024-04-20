@@ -4,7 +4,7 @@ public class HoppingPlayerBox {
     int x, y, width, height, currentPlatformNum;
     char side;
 
-    public HoppingPlayerBox(int x, int y, int width, int height, char side, int currentPlatform){
+    public HoppingPlayerBox(int x, int y, int width, int height, char side, int currentPlatform) {
         this.side = side;
         this.x = x;
         this.y = y;
@@ -23,11 +23,11 @@ public class HoppingPlayerBox {
     }
 
 
-    public int getPlayerX(){
+    public int getPlayerX() {
         return x;
     }
 
-    public int getPlayerY(){
+    public int getPlayerY() {
         return y;
     }
 
@@ -39,24 +39,28 @@ public class HoppingPlayerBox {
         return currentPlatformNum;
     }
 
-    private void playerHop(){
+    private void playerHop() {
         y -= 100;
-        if (currentPlatformNum < 8){
+        if (currentPlatformNum < 7) {
             currentPlatformNum++;
         } else {
             currentPlatformNum = 0;
         }
     }
 
-   public HoppingPlayerBox playerHopToRight(){
-       System.out.println("move to the right");
-       playerHop();
-       x = 350;
-       side = 'R';
-       return new HoppingPlayerBox(x, y, width, height, side, currentPlatformNum);
-   }
+    public void setPlayerY(int deltaY) {
+        y += deltaY;
+    }
 
-    public HoppingPlayerBox playerHopToLeft(){
+    public HoppingPlayerBox playerHopToRight() {
+        System.out.println("move to the right");
+        playerHop();
+        x = 350;
+        side = 'R';
+        return new HoppingPlayerBox(x, y, width, height, side, currentPlatformNum);
+    }
+
+    public HoppingPlayerBox playerHopToLeft() {
         System.out.println("move to the left");
         playerHop();
         x = 195;
@@ -64,13 +68,5 @@ public class HoppingPlayerBox {
         return new HoppingPlayerBox(x, y, width, height, side, currentPlatformNum);
     }
 
-    /**
-     *
-     * x and y coordinates ferdig
-     * legal move
-     * next legal move
-     * get side
-     * place on platform 0 on start
-     */
 
 }

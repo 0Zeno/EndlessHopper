@@ -9,4 +9,6 @@ public interface IViewableHopperModel {
     ArrayList<Platform> getPlatforms();
 
     HoppingPlayerBox getHoppingPlayerBox();
+
+    int getGameScore();
 }
