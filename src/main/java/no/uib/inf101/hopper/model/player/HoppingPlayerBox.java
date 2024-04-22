@@ -1,17 +1,20 @@
 package no.uib.inf101.hopper.model.player;
 
+import no.uib.inf101.hopper.model.platform.Platform;
+
 public class HoppingPlayerBox {
-    int x, y, width, height, currentPlatformNum;
+    int x, width, height, currentPlatformNum;
+    Platform platform;
+    double y;
     char side;
 
-    public HoppingPlayerBox(int x, int y, int width, int height, char side, int currentPlatform) {
+    public HoppingPlayerBox(int x, double y, int width, int height, char side, int currentPlatform) {
         this.side = side;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.currentPlatformNum = currentPlatform;
-
     }
 
     public int getHeight() {
@@ -27,7 +30,7 @@ public class HoppingPlayerBox {
         return x;
     }
 
-    public int getPlayerY() {
+    public double getPlayerY() {
         return y;
     }
 
@@ -39,8 +42,8 @@ public class HoppingPlayerBox {
         return currentPlatformNum;
     }
 
-    private void playerHop() {
-        y -= 100;
+    private void playerHop(double newY) {
+        y = newY;
         if (currentPlatformNum < 7) {
             currentPlatformNum++;
         } else {
@@ -48,21 +51,21 @@ public class HoppingPlayerBox {
         }
     }
 
-    public void setPlayerY(int deltaY) {
+    public void setPlayerY(double deltaY) {
         y += deltaY;
     }
 
-    public HoppingPlayerBox playerHopToRight() {
+    public HoppingPlayerBox playerHopToRight(double nextPlatformY) {
         System.out.println("move to the right");
-        playerHop();
+        playerHop(nextPlatformY);
         x = 350;
         side = 'R';
         return new HoppingPlayerBox(x, y, width, height, side, currentPlatformNum);
     }
 
-    public HoppingPlayerBox playerHopToLeft() {
+    public HoppingPlayerBox playerHopToLeft(double nextPlatformY) {
         System.out.println("move to the left");
-        playerHop();
+        playerHop(nextPlatformY);
         x = 195;
         side = 'L';
         return new HoppingPlayerBox(x, y, width, height, side, currentPlatformNum);

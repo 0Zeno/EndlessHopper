@@ -1,7 +1,9 @@
 package no.uib.inf101.hopper.model.platform;
 
 public class Platform {
-    private int x, y, width, height, platformNumber;
+    private int x, width, height, platformNumber;
+
+    private double y;
     private char platformSide;
 
     public Platform(int x, char platformSide, int y, int width, int height, int platformNumber) {
@@ -36,7 +38,7 @@ public class Platform {
         return x;
     }
 
-    public void movePlatformDown(int deltaY) {
+    public void movePlatformDown(double deltaY) {
         y += deltaY;
     }
 
@@ -51,7 +53,7 @@ public class Platform {
         }
     }
 
-    public int getPlatformY() {
+    public double getPlatformY() {
         return y;
     }
 

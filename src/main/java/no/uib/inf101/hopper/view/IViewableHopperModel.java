@@ -11,4 +11,6 @@ public interface IViewableHopperModel {
     HoppingPlayerBox getHoppingPlayerBox();
 
     int getGameScore();
+
+    double getVelocity();
 }
