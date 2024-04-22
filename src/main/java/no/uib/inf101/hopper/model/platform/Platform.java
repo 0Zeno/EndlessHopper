@@ -1,18 +1,21 @@
 package no.uib.inf101.hopper.model.platform;
 
+import java.awt.*;
+
 public class Platform {
     private int x, width, height, platformNumber;
 
     private double y;
-    private char platformSide;
+    private char platformSide, color;
 
-    public Platform(int x, char platformSide, int y, int width, int height, int platformNumber) {
+    public Platform(int x, char platformSide, int y, int width, int height, int platformNumber, char color) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.platformNumber = platformNumber;
         this.platformSide = getRandomPlatformSide();
+        this.color = color;
     }
 
     private char getRandomPlatformSide() {
@@ -23,6 +26,7 @@ public class Platform {
         return tempPlatformSide;
     }
 
+    public char getColor() {return color;}
     public char getPlatformSide() {
         return platformSide;
     }
@@ -41,32 +45,22 @@ public class Platform {
     public void movePlatformDown(double deltaY) {
         y += deltaY;
     }
-
-    public void setY(int yPosition) {
-        y = yPosition;
-    }
-
     public void movePlatformToTop() {
         if (this.getPlatformY() > 798) {
             y = 0;
             this.setPlatformSide(getRandomPlatformSide());
         }
     }
-
     public double getPlatformY() {
         return y;
     }
-
     public int getPlatformWidth() {
         return width;
     }
-
     public int getPlatformHeight() {
         return height;
     }
-
     public int getPlatformNumber() {
         return platformNumber;
     }
-
 }

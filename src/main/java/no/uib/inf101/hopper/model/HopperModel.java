@@ -12,10 +12,8 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     private int anchorPointPlatform;
     private HoppingPlayerBox playerBox;
     int gameScore = 0;
-
     int highScore = 0;
     double velocity;
-
     boolean isDebugMode;
 
     ArrayList<Platform> platforms;
@@ -38,21 +36,28 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     }
 
     @Override
+    public char getPlatformColorChar(int index) {
+        return platforms.get(index).getColor();
+    }
+
+    @Override
     public void movePlayer(char side) {
         if (side == 'L' && isLeagleHop(side, playerBox, platforms)) {
             playerBox = playerBox.playerHopToLeft(platforms.get(getNextPlatformNumber()).getPlatformY() -40);
             gameScore++;
-            if (getGameScore() % 11 == 0 && getGameScore() > 10 && velocity < 8){
-                velocity += 0.2;
-            }
+            increaseVelocity();
         } else if (side == 'R' && isLeagleHop(side, playerBox, platforms)) {
             playerBox = playerBox.playerHopToRight(platforms.get(getNextPlatformNumber()).getPlatformY() -40);
             gameScore++;
-            if (getGameScore() % 11 == 0 && getGameScore() > 10 && velocity < 8){
-                velocity += 0.2;
-            }
+            increaseVelocity();
         } else {
             currentGameState = GameState.GAME_OVER;
+        }
+    }
+
+    private void increaseVelocity() {
+        if (getGameScore() % 11 == 0 && getGameScore() > 10 && velocity < 8){
+            velocity += 0.2;
         }
     }
 
@@ -80,13 +85,18 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         this.gameScore = 0;
         for (int i = 0; i < amountOfPlatforms; i++) {
             this.platforms.add(new Platform(150, 'L', anchorPointPlatform - i * 100, 125,
-                    25, i));
+                    25, i, getRandomColor()));
         }
         this.playerBox = new HoppingPlayerBox(platforms.get(0).getPlatformX() + 50,
                 platforms.get(0).getPlatformY() - 40, 40, 40, platforms.get(0).getPlatformSide(), 0);
         currentGameState = GameState.GAME_ACTIVE;
     }
 
+    private char getRandomColor() {
+        String colorOptions = "RGBYOPM";
+        int index = (int) (Math.random() * colorOptions.length());
+        return colorOptions.charAt(index);
+    }
     @Override
     public int getGameScore() {
         return gameScore;

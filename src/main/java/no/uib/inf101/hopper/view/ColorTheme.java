@@ -20,15 +20,8 @@ public class ColorTheme implements IColorTheme {
         return (new Color(255, 255, 255, 10));
     }
 
-    public Color getRandomColor() {
-        String colorOptions = "RGBYOPM";
-        int index = (int) (Math.random() * colorOptions.length());
-        Character colorChar = colorOptions.charAt(index);
-        return getCellColor(colorChar);
-    }
-
     @Override
-    public Color getCellColor(Character c) {
+    public Color getPlatformColor(Character c) {
         Color color = switch (c) {
             case 'R' -> Color.RED;
             case 'G' -> Color.GREEN;

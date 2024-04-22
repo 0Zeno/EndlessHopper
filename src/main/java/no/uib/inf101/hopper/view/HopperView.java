@@ -43,7 +43,7 @@ public class HopperView extends JPanel {
             int platformX = p.getPlatformX();
             Rectangle2D platform = new Rectangle2D.Double(platformX,
                     p.getPlatformY(), p.getPlatformWidth(), p.getPlatformHeight());
-            g2.setColor(Color.RED);
+            g2.setColor(colorTheme.getPlatformColor(viewableHopperModel.getPlatformColorChar(p.getPlatformNumber())));
             g2.fill(platform);
             g2.draw(platform);
             if (viewableHopperModel.isDebugMode()){
