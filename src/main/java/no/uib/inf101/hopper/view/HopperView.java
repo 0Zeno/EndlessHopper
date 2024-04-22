@@ -1,5 +1,6 @@
 package no.uib.inf101.hopper.view;
 
+import no.uib.inf101.hopper.model.GameState;
 import no.uib.inf101.hopper.model.player.HoppingPlayerBox;
 import no.uib.inf101.hopper.model.platform.Platform;
 
@@ -26,10 +27,16 @@ public class HopperView extends JPanel {
                 gameWidth - 2 * OUTERMARGIN,
                 gameHeight - 2 * OUTERMARGIN);
         g2.setColor(colorTheme.getBackgroundColor());
-        g2.fill(background);
-        drawPlatforms(g2);
-        drawPlayer(g2);
-        drawGameScore(g2);
+        if (viewableHopperModel.getGameState() == GameState.GAME_ACTIVE){
+            g2.fill(background);
+            drawPlatforms(g2);
+            drawPlayer(g2);
+            drawGameScore(g2);
+        } else if (viewableHopperModel.getGameState() == GameState.GAME_OVER){
+            drawGameOver(g2);
+        } else if (viewableHopperModel.getGameState() == GameState.GAME_START){
+            drawGameStart(g2);
+        }
     }
     private void drawPlatforms(Graphics2D g2) {
         for (Platform p : viewableHopperModel.getPlatforms()) {
@@ -39,10 +46,13 @@ public class HopperView extends JPanel {
             g2.setColor(Color.RED);
             g2.fill(platform);
             g2.draw(platform);
-            String platformNumber = String.valueOf(p.getPlatformNumber());
-            String platformSide = String.valueOf(p.getPlatformSide());
-            g2.setColor(Color.BLACK);
-            g2.drawString(platformNumber + platformSide, platformX + 10, (int) (p.getPlatformY() + 10));
+            if (viewableHopperModel.isDebugMode()){
+                String platformNumber = String.valueOf(p.getPlatformNumber());
+                String platformSide = String.valueOf(p.getPlatformSide());
+                g2.setColor(Color.BLACK);
+                g2.drawString(platformNumber + platformSide, platformX + 10, (int) (p.getPlatformY() + 10));
+            }
+
         }
     }
 
@@ -50,26 +60,52 @@ public class HopperView extends JPanel {
         String gameScore = String.valueOf(viewableHopperModel.getGameScore());
         String gameVelocity = String.valueOf(viewableHopperModel.getVelocity());
         g2.setColor(Color.WHITE);
-        g2.drawString("Current velocity: " + gameVelocity, 30, 40);
+        if (viewableHopperModel.isDebugMode()) {
+            g2.drawString("Current velocity: " + gameVelocity, 30, 40);
+        }
         g2.setFont(new Font("Arial", Font.BOLD, 20));
         g2.drawString("Score: " + gameScore, 30, 30);
-
-
     }
-
     private void drawPlayer(Graphics2D g2) {
         HoppingPlayerBox playerBox = viewableHopperModel.getHoppingPlayerBox();
         Rectangle2D hoppingPlayerBox = new Rectangle2D.Double(playerBox.getPlayerX(),
-                playerBox.getPlayerY(),
-                playerBox.getWidth(),
-                playerBox.getHeight());
+                playerBox.getPlayerY(), playerBox.getWidth(), playerBox.getHeight());
         g2.setColor(colorTheme.getHopperPlayerColor());
         g2.fill(hoppingPlayerBox);
         g2.draw(hoppingPlayerBox);
         String playerSide = String.valueOf(playerBox.getSide());
         String playerPlatformNumber = String.valueOf(playerBox.getCurrentPlatformNum());
-        g2.setColor(Color.BLACK);
-        g2.drawString(playerPlatformNumber + playerSide, playerBox.getPlayerX() + 10, (int) (playerBox.getPlayerY() + 10));
+        if (viewableHopperModel.isDebugMode()) {
+            g2.setColor(Color.BLACK);
+            g2.drawString(playerPlatformNumber + playerSide, playerBox.getPlayerX() + 10,
+                    (int) (playerBox.getPlayerY() + 10));
+        }
+    }
+
+    private void drawGameOver(Graphics2D g2){
+        String gameScore = String.valueOf(viewableHopperModel.getGameScore());
+        String highScore = String.valueOf(viewableHopperModel.getHighScore());
+        Rectangle2D gameOverScreen = new Rectangle2D.Double(50, 50, 500, 600);
+        g2.setColor(colorTheme.getGameOverColor());
+        g2.fill(gameOverScreen);
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font("Arial", Font.BOLD, 40));
+        g2.drawString("GameOver", 100, 250);
+        g2.setFont(new Font("Arial", Font.ITALIC, 20));
+        g2.drawString("Your score was: " + gameScore, 100, 330);
+        g2.drawString("Your highscore is: " + highScore, 100, 360);
+        g2.drawString("Press 'enter' to play again", 100, 420);
+    }
+
+    private void drawGameStart(Graphics2D g2){
+        Rectangle2D gameOverScreen = new Rectangle2D.Double(50, 50, 500, 600);
+        g2.setColor(colorTheme.getGameOverColor());
+        g2.fill(gameOverScreen);
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font("Arial", Font.BOLD, 40));
+        g2.drawString("Welcome to Hopper", 100, 300);
+        g2.setFont(new Font("Arial", Font.ITALIC, 20));
+        g2.drawString("Press 'enter' to play", 100, 330);
     }
 
     @Override

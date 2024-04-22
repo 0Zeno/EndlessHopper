@@ -17,7 +17,7 @@ public class ColorTheme implements IColorTheme {
 
     @Override
     public Color getGameOverColor() {
-        return (new Color(255, 255, 255, 50));
+        return (new Color(255, 255, 255, 10));
     }
 
     public Color getRandomColor() {

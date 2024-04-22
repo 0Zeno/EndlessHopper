@@ -19,6 +19,7 @@ public interface IControllableHopperModel {
 
     /**
      * Resets the platforms, score and hopper
+     * @param amountOfPlatforms the amount of platforms
      */
     void resetGame(int amountOfPlatforms);
 
@@ -32,6 +33,11 @@ public interface IControllableHopperModel {
      * Advances the game by one clock tick.
      */
     void clockTick();
+
+    /**
+     * Switches from and to debug mode if "d" key is pressed
+     */
+    void switchDebugMode();
 
 
 }

@@ -12,14 +12,19 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     private int anchorPointPlatform;
     private HoppingPlayerBox playerBox;
     int gameScore = 0;
+
+    int highScore = 0;
     double velocity;
+
+    boolean isDebugMode;
 
     ArrayList<Platform> platforms;
 
     public HopperModel() {
         this.anchorPointPlatform = 600;
-        this.currentGameState = GameState.GAME_ACTIVE;
         resetGame(8);
+        this.currentGameState = GameState.GAME_START;
+        this.isDebugMode = false;
     }
 
     @Override
@@ -51,6 +56,12 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         }
     }
 
+    private void checkIfPlayerUnderScreen(){
+        if (playerBox.getPlayerY() > 700){
+            currentGameState = GameState.GAME_OVER;
+        }
+    }
+
     private int getNextPlatformNumber(){
         if (playerBox.getCurrentPlatformNum() < 7){
             return playerBox.getCurrentPlatformNum() + 1;
@@ -58,7 +69,6 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
             return 0;
         }
     }
-
     @Override
     public GameState getGameState() {
         return currentGameState;
@@ -83,6 +93,14 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     }
 
     @Override
+    public int getHighScore() {
+        if (gameScore > highScore){
+            highScore = gameScore;
+        }
+        return highScore;
+    }
+
+    @Override
     public int getTimerDelay() {
         return 1;
     }
@@ -90,8 +108,6 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     public double getVelocity() {
         return velocity;
     }
-
-
     @Override
     public void clockTick() {
         for (Platform p : platforms) {
@@ -99,6 +115,16 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
             p.movePlatformToTop();
         }
         playerBox.setPlayerY(velocity);
+        checkIfPlayerUnderScreen();
+    }
+
+    @Override
+    public boolean isDebugMode() {
+        return isDebugMode;
+    }
+    @Override
+    public void switchDebugMode() {
+        isDebugMode = !isDebugMode;
     }
 
     private boolean isLeagleHop(char sideToJump, HoppingPlayerBox hopper,

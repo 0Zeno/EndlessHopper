@@ -1,5 +1,6 @@
 package no.uib.inf101.hopper.view;
 
+import no.uib.inf101.hopper.model.GameState;
 import no.uib.inf101.hopper.model.player.HoppingPlayerBox;
 import no.uib.inf101.hopper.model.platform.Platform;
 
@@ -12,5 +13,11 @@ public interface IViewableHopperModel {
 
     int getGameScore();
 
+    int getHighScore();
+
     double getVelocity();
+
+    GameState getGameState();
+
+    boolean isDebugMode();
 }

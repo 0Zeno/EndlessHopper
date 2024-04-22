@@ -58,7 +58,7 @@ public class HoppingPlayerBox {
     public HoppingPlayerBox playerHopToRight(double nextPlatformY) {
         System.out.println("move to the right");
         playerHop(nextPlatformY);
-        x = 350;
+        x = 345;
         side = 'R';
         return new HoppingPlayerBox(x, y, width, height, side, currentPlatformNum);
     }
