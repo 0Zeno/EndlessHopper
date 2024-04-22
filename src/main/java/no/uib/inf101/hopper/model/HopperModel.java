@@ -16,17 +16,10 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
 
     ArrayList<Platform> platforms;
 
-    public HopperModel(int amountOfPlatforms) {
+    public HopperModel() {
         this.anchorPointPlatform = 600;
-        this.velocity = 6.0;
-        this.platforms = new ArrayList<>();
         this.currentGameState = GameState.GAME_ACTIVE;
-        for (int i = 0; i < amountOfPlatforms; i++) {
-            this.platforms.add(new Platform(150, 'L', anchorPointPlatform - i * 100, 125,
-                    25, i));
-        }
-        this.playerBox = new HoppingPlayerBox(platforms.get(0).getPlatformX() + 50,
-                platforms.get(0).getPlatformY() - 40, 40, 40, platforms.get(0).getPlatformSide(), 0);
+        resetGame(8);
     }
 
     @Override
@@ -44,9 +37,15 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         if (side == 'L' && isLeagleHop(side, playerBox, platforms)) {
             playerBox = playerBox.playerHopToLeft(platforms.get(getNextPlatformNumber()).getPlatformY() -40);
             gameScore++;
+            if (getGameScore() % 11 == 0 && getGameScore() > 10 && velocity < 8){
+                velocity += 0.2;
+            }
         } else if (side == 'R' && isLeagleHop(side, playerBox, platforms)) {
             playerBox = playerBox.playerHopToRight(platforms.get(getNextPlatformNumber()).getPlatformY() -40);
             gameScore++;
+            if (getGameScore() % 11 == 0 && getGameScore() > 10 && velocity < 8){
+                velocity += 0.2;
+            }
         } else {
             currentGameState = GameState.GAME_OVER;
         }
@@ -65,8 +64,16 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         return currentGameState;
     }
 
-    @Override
-    public void resetGame() {
+    public void resetGame(int amountOfPlatforms) {
+        this.platforms = new ArrayList<>();
+        this.velocity = 3.0;
+        this.gameScore = 0;
+        for (int i = 0; i < amountOfPlatforms; i++) {
+            this.platforms.add(new Platform(150, 'L', anchorPointPlatform - i * 100, 125,
+                    25, i));
+        }
+        this.playerBox = new HoppingPlayerBox(platforms.get(0).getPlatformX() + 50,
+                platforms.get(0).getPlatformY() - 40, 40, 40, platforms.get(0).getPlatformSide(), 0);
         currentGameState = GameState.GAME_ACTIVE;
     }
 
@@ -92,10 +99,6 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
             p.movePlatformToTop();
         }
         playerBox.setPlayerY(velocity);
-        //TODO: flytte denne til et annet sted slik at alle platformer fåt velocity update samtidig
-        if (getGameScore() % 11 == 0 && getGameScore() > 10 && velocity < 8){
-            velocity += 0.01;
-        }
     }
 
     private boolean isLeagleHop(char sideToJump, HoppingPlayerBox hopper,

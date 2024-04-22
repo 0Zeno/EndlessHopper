@@ -27,7 +27,7 @@ public class HopperController implements java.awt.event.KeyListener {
     public void keyPressed(KeyEvent e) {
         if (controllableHopperModel.getGameState() == GameState.GAME_OVER &&
         e.getKeyCode() == KeyEvent.VK_ENTER){
-            controllableHopperModel.resetGame();
+            controllableHopperModel.resetGame(8);
         }
 
         if (controllableHopperModel.getGameState() == GameState.GAME_ACTIVE || controllableHopperModel.getGameState() == GameState.DEBUG_GAME) {

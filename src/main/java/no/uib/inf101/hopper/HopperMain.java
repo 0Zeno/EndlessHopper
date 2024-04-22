@@ -12,7 +12,7 @@ public class HopperMain {
     public static final String WINDOW_TITLE = "Endless Hopper";
 
     public static void main(String[] args) {
-        HopperModel model = new HopperModel(8);
+        HopperModel model = new HopperModel();
         HopperView view = new HopperView(model);
         HopperController controller = new HopperController(model, view);
 

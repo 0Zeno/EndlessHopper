@@ -20,7 +20,7 @@ public interface IControllableHopperModel {
     /**
      * Resets the platforms, score and hopper
      */
-    void resetGame();
+    void resetGame(int amountOfPlatforms);
 
     /**
      *
