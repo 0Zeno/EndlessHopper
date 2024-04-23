@@ -30,9 +30,9 @@ public class HopperController implements java.awt.event.KeyListener {
             controllableHopperModel.switchDebugMode();
         }
 
-        if (controllableHopperModel.getGameState() == GameState.GAME_OVER ||
-        controllableHopperModel.getGameState() == GameState.GAME_START &&
-        e.getKeyCode() == KeyEvent.VK_ENTER){
+        if ((controllableHopperModel.getGameState() == GameState.GAME_OVER )||
+        (controllableHopperModel.getGameState() == GameState.GAME_START) &&
+        (e.getKeyCode() == KeyEvent.VK_ENTER)){
             controllableHopperModel.resetGame(8);
         }
 
