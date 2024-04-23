@@ -12,13 +12,13 @@ public class HoppingPlayerBoxTest {
         HoppingPlayerBox playerBox1 = new  HoppingPlayerBox(195, 100, 50, 50, 'R', 0);
         HoppingPlayerBox playerBox2 = new  HoppingPlayerBox(195, 0, 50, 50, 'L', 1);
 
-        deepEquals(playerBox2, playerBox1.playerHopToLeft());
+        deepEquals(playerBox2, playerBox1.playerHopToLeft(100));
     }
     @Test
     public void TestHopRight(){
         HoppingPlayerBox playerBox1 = new  HoppingPlayerBox(195, 100, 50, 50, 'L', 0);
         HoppingPlayerBox playerBox2 = new  HoppingPlayerBox(350, 0, 50, 50, 'R', 1);
 
-        deepEquals(playerBox2, playerBox1.playerHopToLeft());
+        deepEquals(playerBox2, playerBox1.playerHopToLeft(100));
     }
 }

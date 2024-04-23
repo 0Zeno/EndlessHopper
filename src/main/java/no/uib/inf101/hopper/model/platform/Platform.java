@@ -25,7 +25,7 @@ public class Platform {
     }
 
     private char getRandomColorChar() {
-        String colorOptions = "RGBYOPM";
+        String colorOptions = "RFGYDL";
         int index = (int) (Math.random() * colorOptions.length());
         return colorOptions.charAt(index);
     }

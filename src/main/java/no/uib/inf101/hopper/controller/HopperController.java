@@ -26,17 +26,15 @@ public class HopperController implements java.awt.event.KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_D){
+        if (e.getKeyCode() == KeyEvent.VK_D) {
             controllableHopperModel.switchDebugMode();
         }
 
-        if ((controllableHopperModel.getGameState() == GameState.GAME_OVER )||
-        (controllableHopperModel.getGameState() == GameState.GAME_START) &&
-        (e.getKeyCode() == KeyEvent.VK_ENTER)){
+        if ((controllableHopperModel.getGameState() == GameState.GAME_OVER ||
+                controllableHopperModel.getGameState() == GameState.GAME_START) &&
+                        e.getKeyCode() == KeyEvent.VK_ENTER) {
             controllableHopperModel.resetGame(8);
-        }
-
-        if (controllableHopperModel.getGameState() == GameState.GAME_ACTIVE) {
+        } else if (controllableHopperModel.getGameState() == GameState.GAME_ACTIVE) {
             if (e.getKeyCode() == (KeyEvent.VK_LEFT)) {
                 controllableHopperModel.movePlayer('L');
                 hopperView.repaint();
@@ -73,6 +71,7 @@ public class HopperController implements java.awt.event.KeyListener {
             hopperView.repaint();
         }
     }
+
     private void delay() {
         int delay = controllableHopperModel.getTimerDelay();
         timer.setDelay(delay);

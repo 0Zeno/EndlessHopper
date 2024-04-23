@@ -7,7 +7,7 @@ public class ColorTheme implements IColorTheme {
 
     @Override
     public Color getHopperPlayerColor() {
-        return new Color(0, 255, 0  );
+        return new Color(1, 150, 50);
     }
 
     @Override
@@ -23,13 +23,12 @@ public class ColorTheme implements IColorTheme {
     @Override
     public Color getPlatformColor(Character c) {
         Color color = switch (c) {
-            case 'R' -> Color.RED;
-            case 'G' -> Color.GREEN;
-            case 'B' -> Color.BLUE;
-            case 'Y' -> Color.GRAY;
-            case 'O' -> Color.ORANGE;
-            case 'P' -> Color.PINK;
-            case 'M' -> Color.MAGENTA;
+            case 'R' -> new Color(93, 43, 125);
+            case 'F' -> new Color(167, 45, 137);
+            case 'G' -> new Color(20, 116, 187);
+            case 'Y' -> new Color(143, 195, 62);
+            case 'D' -> new Color(254, 238, 34);
+            case 'L' -> new Color(228, 30, 38);
             default -> throw new IllegalArgumentException("No avalible color for '" + c + "'");
         };
         return color;

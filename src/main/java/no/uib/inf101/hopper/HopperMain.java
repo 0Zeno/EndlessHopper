@@ -14,13 +14,12 @@ public class HopperMain {
     public static void main(String[] args) {
         HopperModel model = new HopperModel();
         HopperView view = new HopperView(model);
-        HopperController controller = new HopperController(model, view);
+        new HopperController(model, view);
 
 
         JFrame frame = new JFrame(WINDOW_TITLE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false); //fungerer ofså med true
-
+        frame.setResizable(false); //fungerer også med true
         frame.setContentPane(view);
 
         // Here we set which component to view in our window

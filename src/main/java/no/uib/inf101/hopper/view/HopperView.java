@@ -93,7 +93,7 @@ public class HopperView extends JPanel {
         g2.drawString("GameOver", 100, 250);
         g2.setFont(new Font("Arial", Font.ITALIC, 20));
         g2.drawString("Your score was: " + gameScore, 100, 330);
-        g2.drawString("Your highscore is: " + highScore, 100, 360);
+        g2.drawString("Your high score is: " + highScore, 100, 360);
         g2.drawString("Press 'enter' to play again", 100, 420);
     }
 

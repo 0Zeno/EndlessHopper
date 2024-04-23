@@ -58,10 +58,12 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     private void increaseVelocity() {
         if (getGameScore() % 11 == 0 && getGameScore() > 10 && velocity < 8){
             velocity += 0.2;
+        } else if (getHoppingPlayerBox().getPlayerY() < 75){
+            velocity += 0.05;
         }
     }
 
-    private void checkIfPlayerUnderScreen(){
+    protected void checkIfPlayerUnderScreen(){
         if (playerBox.getPlayerY() > 700){
             currentGameState = GameState.GAME_OVER;
         }
@@ -133,16 +135,16 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         isDebugMode = !isDebugMode;
     }
 
-    private boolean isLeagleHop(char sideToJump, HoppingPlayerBox hopper,
+    protected boolean isLeagleHop(char sideToJump, HoppingPlayerBox hopper,
                                 ArrayList<Platform> platforms) {
         char nextPlatformSide = getNextPlatform(hopper, platforms).getPlatformSide();
         return (nextPlatformSide == sideToJump);
     }
 
-    private Platform getNextPlatform(HoppingPlayerBox hopper, ArrayList<Platform> platforms) {
-        int currentPlatform = hopper.getCurrentPlatformNum() + 1;
-        if (currentPlatform < 8) {
-            return platforms.get(currentPlatform);
+    protected Platform getNextPlatform(HoppingPlayerBox hopper, ArrayList<Platform> platforms) {
+        int nextPlatform = hopper.getCurrentPlatformNum() + 1;
+        if (nextPlatform < 8) {
+            return platforms.get(nextPlatform);
         } else {
             return platforms.get(0);
         }
