@@ -5,11 +5,12 @@ import no.uib.inf101.hopper.model.GameState;
 public interface IControllableHopperModel {
 
     /**
-     * moves the player to a side L or R, increases the score and the velocity using the increaseVelocity function
+     * moves the player to a side L or R, increases the score and the velocity using
+     * the increaseVelocity function
+     * 
      * @param side the side the hopper wants to move
      */
     void movePlayer(char side);
-
 
     /**
      *
@@ -19,6 +20,7 @@ public interface IControllableHopperModel {
 
     /**
      * Resets the platforms, score velocity, and hopper.
+     * 
      * @param amountOfPlatforms the amount of platforms
      */
     void resetGame(int amountOfPlatforms);

@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class ColorTheme implements IColorTheme {
 
-
     @Override
     public Color getHopperPlayerColor() {
         return new Color(1, 150, 50);

@@ -7,12 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.Timer;
 
-
 public class HopperController implements java.awt.event.KeyListener {
     private Timer timer;
     private IControllableHopperModel controllableHopperModel;
     private HopperView hopperView;
-
 
     public HopperController(IControllableHopperModel controllableHopperModel, HopperView hopperView) {
         this.controllableHopperModel = controllableHopperModel;
@@ -23,7 +21,6 @@ public class HopperController implements java.awt.event.KeyListener {
         timer.start();
     }
 
-
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_D) {
@@ -32,7 +29,7 @@ public class HopperController implements java.awt.event.KeyListener {
 
         if ((controllableHopperModel.getGameState() == GameState.GAME_OVER ||
                 controllableHopperModel.getGameState() == GameState.GAME_START) &&
-                        e.getKeyCode() == KeyEvent.VK_ENTER) {
+                e.getKeyCode() == KeyEvent.VK_ENTER) {
             controllableHopperModel.resetGame(8);
         } else if (controllableHopperModel.getGameState() == GameState.GAME_ACTIVE) {
             if (e.getKeyCode() == (KeyEvent.VK_LEFT)) {

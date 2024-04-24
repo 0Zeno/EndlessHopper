@@ -7,7 +7,6 @@ import no.uib.inf101.hopper.model.GameState;
 import no.uib.inf101.hopper.model.HopperModel;
 import no.uib.inf101.hopper.view.HopperView;
 
-
 public class HopperMain {
     public static final String WINDOW_TITLE = "Endless Hopper";
 
@@ -16,10 +15,9 @@ public class HopperMain {
         HopperView view = new HopperView(model);
         new HopperController(model, view);
 
-
         JFrame frame = new JFrame(WINDOW_TITLE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false); //fungerer også med true
+        frame.setResizable(false); // fungerer også med true
         frame.setContentPane(view);
 
         // Here we set which component to view in our window
@@ -28,7 +26,7 @@ public class HopperMain {
         // Call these methods to actually display the window
         frame.pack();
 
-        //setter rammen i midten
+        // setter rammen i midten
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 

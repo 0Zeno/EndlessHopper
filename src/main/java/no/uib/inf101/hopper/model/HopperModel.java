@@ -43,11 +43,11 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     @Override
     public void movePlayer(char side) {
         if (side == 'L' && isLeagleHop(side, playerBox, platforms)) {
-            playerBox = playerBox.playerHopToLeft(platforms.get(getNextPlatformNumber()).getPlatformY() -40);
+            playerBox = playerBox.playerHopToLeft(platforms.get(getNextPlatformNumber()).getPlatformY() - 40);
             gameScore++;
             increaseVelocity();
         } else if (side == 'R' && isLeagleHop(side, playerBox, platforms)) {
-            playerBox = playerBox.playerHopToRight(platforms.get(getNextPlatformNumber()).getPlatformY() -40);
+            playerBox = playerBox.playerHopToRight(platforms.get(getNextPlatformNumber()).getPlatformY() - 40);
             gameScore++;
             increaseVelocity();
         } else {
@@ -56,26 +56,31 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     }
 
     private void increaseVelocity() {
-        if (getGameScore() % 11 == 0 && getGameScore() > 10 && velocity < 8){
+        if (getGameScore() % 11 == 0 && getGameScore() > 10 && velocity < 10) {
             velocity += 0.2;
-        } else if (getHoppingPlayerBox().getPlayerY() < 75){
+        }
+        if (getHoppingPlayerBox().getPlayerY() < 75) {
             velocity += 0.05;
+        }
+        if (getHoppingPlayerBox().getPlayerY() < 50) {
+            velocity += 0.075;
         }
     }
 
-    protected void checkIfPlayerUnderScreen(){
-        if (playerBox.getPlayerY() > 700){
+    protected void checkIfPlayerUnderScreen() {
+        if (playerBox.getPlayerY() > 700) {
             currentGameState = GameState.GAME_OVER;
         }
     }
 
-    private int getNextPlatformNumber(){
-        if (playerBox.getCurrentPlatformNum() < 7){
+    private int getNextPlatformNumber() {
+        if (playerBox.getCurrentPlatformNum() < 7) {
             return playerBox.getCurrentPlatformNum() + 1;
         } else {
             return 0;
         }
     }
+
     @Override
     public GameState getGameState() {
         return currentGameState;
@@ -94,7 +99,6 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         currentGameState = GameState.GAME_ACTIVE;
     }
 
-
     @Override
     public int getGameScore() {
         return gameScore;
@@ -102,7 +106,7 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
 
     @Override
     public int getHighScore() {
-        if (gameScore > highScore){
+        if (gameScore > highScore) {
             highScore = gameScore;
         }
         return highScore;
@@ -112,10 +116,12 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     public int getTimerDelay() {
         return 1;
     }
+
     @Override
     public double getVelocity() {
         return velocity;
     }
+
     @Override
     public void clockTick() {
         for (Platform p : platforms) {
@@ -130,13 +136,14 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     public boolean isDebugMode() {
         return isDebugMode;
     }
+
     @Override
     public void switchDebugMode() {
         isDebugMode = !isDebugMode;
     }
 
     protected boolean isLeagleHop(char sideToJump, HoppingPlayerBox hopper,
-                                ArrayList<Platform> platforms) {
+            ArrayList<Platform> platforms) {
         char nextPlatformSide = getNextPlatform(hopper, platforms).getPlatformSide();
         return (nextPlatformSide == sideToJump);
     }

@@ -36,6 +36,7 @@ public interface IViewableHopperModel {
 
     /**
      * The gamestate can ble active, game over or game start
+     * 
      * @return the gamstate of the game
      */
     GameState getGameState();

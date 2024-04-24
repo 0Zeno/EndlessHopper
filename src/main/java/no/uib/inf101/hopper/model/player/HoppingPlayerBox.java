@@ -25,7 +25,6 @@ public class HoppingPlayerBox {
         return width;
     }
 
-
     public int getPlayerX() {
         return x;
     }
@@ -70,6 +69,5 @@ public class HoppingPlayerBox {
         side = 'L';
         return new HoppingPlayerBox(x, y, width, height, side, currentPlatformNum);
     }
-
 
 }
