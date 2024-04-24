@@ -65,6 +65,9 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         if (getHoppingPlayerBox().getPlayerY() < 50) {
             velocity += 0.075;
         }
+        if (getHoppingPlayerBox().getPlayerY() < 25) {
+            velocity += 0.1;
+        }
     }
 
     protected void checkIfPlayerUnderScreen() {
@@ -88,7 +91,7 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
 
     public void resetGame(int amountOfPlatforms) {
         this.platforms = new ArrayList<>();
-        this.velocity = 3.0;
+        this.velocity = 2.0;
         this.gameScore = 0;
         for (int i = 0; i < amountOfPlatforms; i++) {
             this.platforms.add(new Platform(150, 'L', anchorPointPlatform - i * 100, 125,
