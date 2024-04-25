@@ -9,3 +9,4 @@ There is also a debug mode that turns on if you press 'd'.
 ## Known problems
 * The game animations are smoother if you run from intellij
 ## YouTube link
+https://youtu.be/gGfZiPM869c
