@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-public class testTetrisView {
+public class testHopperView {
     @Test
     public void sanityDefaultColorThemeTest() {
     ColorTheme colors = new ColorTheme();

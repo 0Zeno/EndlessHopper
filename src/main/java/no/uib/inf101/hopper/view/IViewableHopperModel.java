@@ -25,7 +25,7 @@ public interface IViewableHopperModel {
     int getGameScore();
 
     /**
-     * @return gets the highscore from hopper model
+     * @return gets the high-score from hopper model
      */
     int getHighScore();
 
@@ -35,9 +35,9 @@ public interface IViewableHopperModel {
     double getVelocity();
 
     /**
-     * The gamestate can ble active, game over or game start
+     * The game-state can ble active, game over or game start
      * 
-     * @return the gamstate of the game
+     * @return the game-state of the game
      */
     GameState getGameState();
 

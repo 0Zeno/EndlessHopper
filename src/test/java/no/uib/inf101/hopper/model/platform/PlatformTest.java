@@ -2,18 +2,31 @@ package no.uib.inf101.hopper.model.platform;
 
 import org.junit.jupiter.api.Test;
 
-import static java.util.Objects.deepEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlatformTest {
     @Test
     public void TestGetPlatformX(){
-        Platform platform1 = new Platform(10, 'R', 10, 100, 25, 0, 'R');
-        Platform platform2 = new Platform(20, 'R', 10, 100, 25, 0, 'R');
+        Platform platform1 = new Platform(20, 'R', 10, 100, 25, 0, 'R');
+        Platform platform2 = new Platform(10, 'L', 10, 100, 25, 0, 'R');
+        platform2.setPlatformSide('R');
+        assertEquals(platform1.getPlatformX(), platform2.getPlatformX());
+    }
 
-        platform1.getPlatformX();
+    @Test
+    public void TestGetPlatformY(){
+        Platform platform1 = new Platform(20, 'R', 10, 100, 25, 0, 'R');
+        Platform platform2 = new Platform(20, 'R', 5, 100, 25, 0, 'R');
+        platform2.movePlatformDown(5);
 
-        deepEquals(platform1, platform2);
 
+        assertEquals(platform1.getPlatformY(), platform2.getPlatformY());
+    }
 
+    @Test
+    public void TestMovePlatformToTop(){
+        Platform platform = new Platform(10, 'L', 800, 100, 25, 0, 'R');
+        platform.movePlatformToTop();
+        assertEquals(platform.getPlatformY(), 0);
     }
 }

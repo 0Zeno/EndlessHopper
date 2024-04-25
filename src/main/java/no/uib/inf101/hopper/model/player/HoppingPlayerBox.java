@@ -1,12 +1,9 @@
 package no.uib.inf101.hopper.model.player;
 
-import no.uib.inf101.hopper.model.platform.Platform;
-
 public class HoppingPlayerBox {
-    int x, width, height, currentPlatformNum;
-    Platform platform;
-    double y;
-    char side;
+    private int x, width, height, currentPlatformNum;
+    private double y;
+    private char side;
 
     public HoppingPlayerBox(int x, double y, int width, int height, char side, int currentPlatform) {
         this.side = side;
@@ -45,6 +42,12 @@ public class HoppingPlayerBox {
         y += deltaY;
     }
 
+
+    /**
+     * Used to set new y coordinate for player
+     * and to increase the players current platform number
+     * @param newY the y coordinate where the player is placed
+     */
     private void playerHop(double newY) {
         y = newY;
         if (currentPlatformNum < 7) {
@@ -54,6 +57,11 @@ public class HoppingPlayerBox {
         }
     }
 
+    /**
+     * Makes the player jump to the right
+     * @param nextPlatformY the y coordinate of the next platform
+     * @return new hopping player box with new x and y coordinates and platform number
+     */
     public HoppingPlayerBox playerHopToRight(double nextPlatformY) {
         System.out.println("move to the right");
         playerHop(nextPlatformY);
@@ -62,6 +70,11 @@ public class HoppingPlayerBox {
         return new HoppingPlayerBox(x, y, width, height, side, currentPlatformNum);
     }
 
+    /**
+     * Makes the player jump to the left
+     * @param nextPlatformY the y coordinate of the next platform
+     * @return new hopping player box with new x and y coordinates and platform number
+     */
     public HoppingPlayerBox playerHopToLeft(double nextPlatformY) {
         System.out.println("move to the left");
         playerHop(nextPlatformY);

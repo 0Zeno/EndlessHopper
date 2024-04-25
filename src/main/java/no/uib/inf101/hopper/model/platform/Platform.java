@@ -4,6 +4,7 @@ public class Platform {
     private final int x, width, height, platformNumber;
 
     private double y;
+
     private char platformSide, platformColor;
 
     public Platform(int x, char platformSide, int y, int width, int height, int platformNumber, char color) {

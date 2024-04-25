@@ -14,6 +14,7 @@ public class HoppingPlayerBoxTest {
 
         deepEquals(playerBox2, playerBox1.playerHopToLeft(100));
     }
+
     @Test
     public void TestHopRight(){
         HoppingPlayerBox playerBox1 = new  HoppingPlayerBox(195, 100, 50, 50, 'L', 0);

@@ -11,10 +11,10 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     private GameState currentGameState;
     private int anchorPointPlatform;
     private HoppingPlayerBox playerBox;
-    int gameScore = 0;
-    int highScore = 0;
-    double velocity;
-    boolean isDebugMode;
+    private int gameScore = 0;
+    private int highScore = 0;
+    private double velocity;
+    private boolean isDebugMode;
 
     ArrayList<Platform> platforms;
 
@@ -48,6 +48,10 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     @Override
     public int getGameScore() {
         return gameScore;
+    }
+
+    protected void setGameScore(int gameScoreToSetTo){
+        gameScore = gameScoreToSetTo;
     }
 
     @Override
@@ -96,7 +100,7 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     /**
      * increases the velocity of the player and platform based on player position
      */
-    private void increaseVelocity() {
+    protected void increaseVelocity() {
         if (getGameScore() % 11 == 0 && getGameScore() > 10 && velocity < 10) {
             velocity += 0.2;
         }
