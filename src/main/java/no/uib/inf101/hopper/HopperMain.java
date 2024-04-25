@@ -17,7 +17,7 @@ public class HopperMain {
 
         JFrame frame = new JFrame(WINDOW_TITLE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false); // fungerer også med true
+        frame.setResizable(false); // fungerer også med true men ser dårlig ut
         frame.setContentPane(view);
 
         // Here we set which component to view in our window
