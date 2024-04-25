@@ -70,12 +70,19 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         }
     }
 
+    /**
+     * Checks if the player is under the screen. If the player is then the game is over
+     */
     protected void checkIfPlayerUnderScreen() {
         if (playerBox.getPlayerY() > 700) {
             currentGameState = GameState.GAME_OVER;
         }
     }
 
+    /**
+     * The method is used to get the next current platform number
+     * @return the next platform number after the player jumps
+     */
     private int getNextPlatformNumber() {
         if (playerBox.getCurrentPlatformNum() < 7) {
             return playerBox.getCurrentPlatformNum() + 1;
@@ -89,6 +96,7 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         return currentGameState;
     }
 
+    @Override
     public void resetGame(int amountOfPlatforms) {
         this.platforms = new ArrayList<>();
         this.velocity = 2.0;
@@ -145,12 +153,25 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         isDebugMode = !isDebugMode;
     }
 
+    /**
+     * Method to check if a jump the player wants to do is allowed
+     * @param sideToJump the side the player box wants to jump to
+     * @param hopper the player box
+     * @param platforms the list of platforms
+     * @return ture if the hop is allowed
+     */
     protected boolean isLeagleHop(char sideToJump, HoppingPlayerBox hopper,
             ArrayList<Platform> platforms) {
         char nextPlatformSide = getNextPlatform(hopper, platforms).getPlatformSide();
         return (nextPlatformSide == sideToJump);
     }
 
+    /**
+     * gets the nest platform that the player can jump to
+     * @param hopper the player box
+     * @param platforms a list of platforms
+     * @return returns the next platform that the player can jump to
+     */
     protected Platform getNextPlatform(HoppingPlayerBox hopper, ArrayList<Platform> platforms) {
         int nextPlatform = hopper.getCurrentPlatformNum() + 1;
         if (nextPlatform < 8) {
