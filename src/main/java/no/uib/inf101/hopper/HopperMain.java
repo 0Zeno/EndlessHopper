@@ -17,7 +17,7 @@ public class HopperMain {
 
         JFrame frame = new JFrame(WINDOW_TITLE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false); // fungerer også med true men ser dårlig ut
+        frame.setResizable(false); // works also with true but doesn't look good
         frame.setContentPane(view);
 
         // Here we set which component to view in our window
@@ -26,7 +26,7 @@ public class HopperMain {
         // Call these methods to actually display the window
         frame.pack();
 
-        // setter rammen i midten
+        // places frame in middle
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
