@@ -41,6 +41,10 @@ public class HoppingPlayerBox {
         return currentPlatformNum;
     }
 
+    public void setPlayerY(double deltaY) {
+        y += deltaY;
+    }
+
     private void playerHop(double newY) {
         y = newY;
         if (currentPlatformNum < 7) {
@@ -48,10 +52,6 @@ public class HoppingPlayerBox {
         } else {
             currentPlatformNum = 0;
         }
-    }
-
-    public void setPlayerY(double deltaY) {
-        y += deltaY;
     }
 
     public HoppingPlayerBox playerHopToRight(double nextPlatformY) {

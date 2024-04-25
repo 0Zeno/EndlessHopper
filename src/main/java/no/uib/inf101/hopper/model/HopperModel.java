@@ -41,6 +41,44 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     }
 
     @Override
+    public GameState getGameState() {
+        return currentGameState;
+    }
+
+    @Override
+    public int getGameScore() {
+        return gameScore;
+    }
+
+    @Override
+    public int getHighScore() {
+        if (gameScore > highScore) {
+            highScore = gameScore;
+        }
+        return highScore;
+    }
+
+    @Override
+    public int getTimerDelay() {
+        return 1;
+    }
+
+    @Override
+    public double getVelocity() {
+        return velocity;
+    }
+
+    @Override
+    public boolean isDebugMode() {
+        return isDebugMode;
+    }
+
+    @Override
+    public void switchDebugMode() {
+        isDebugMode = !isDebugMode;
+    }
+
+    @Override
     public void movePlayer(char side) {
         if (side == 'L' && isLeagleHop(side, playerBox, platforms)) {
             playerBox = playerBox.playerHopToLeft(platforms.get(getNextPlatformNumber()).getPlatformY() - 40);
@@ -82,23 +120,6 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         }
     }
 
-    /**
-     * The method is used to get the next current platform number
-     * @return the next platform number after the player jumps
-     */
-    private int getNextPlatformNumber() {
-        if (playerBox.getCurrentPlatformNum() < 7) {
-            return playerBox.getCurrentPlatformNum() + 1;
-        } else {
-            return 0;
-        }
-    }
-
-    @Override
-    public GameState getGameState() {
-        return currentGameState;
-    }
-
     @Override
     public void resetGame(int amountOfPlatforms) {
         this.platforms = new ArrayList<>();
@@ -114,29 +135,6 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     }
 
     @Override
-    public int getGameScore() {
-        return gameScore;
-    }
-
-    @Override
-    public int getHighScore() {
-        if (gameScore > highScore) {
-            highScore = gameScore;
-        }
-        return highScore;
-    }
-
-    @Override
-    public int getTimerDelay() {
-        return 1;
-    }
-
-    @Override
-    public double getVelocity() {
-        return velocity;
-    }
-
-    @Override
     public void clockTick() {
         for (Platform p : platforms) {
             p.movePlatformDown(velocity);
@@ -144,16 +142,6 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         }
         playerBox.setPlayerY(velocity);
         checkIfPlayerUnderScreen();
-    }
-
-    @Override
-    public boolean isDebugMode() {
-        return isDebugMode;
-    }
-
-    @Override
-    public void switchDebugMode() {
-        isDebugMode = !isDebugMode;
     }
 
     /**
@@ -167,6 +155,18 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
             ArrayList<Platform> platforms) {
         char nextPlatformSide = getNextPlatform(hopper, platforms).getPlatformSide();
         return (nextPlatformSide == sideToJump);
+    }
+
+    /**
+     * The method is used to get the next current platform number
+     * @return the next platform number after the player jumps
+     */
+    private int getNextPlatformNumber() {
+        if (playerBox.getCurrentPlatformNum() < 7) {
+            return playerBox.getCurrentPlatformNum() + 1;
+        } else {
+            return 0;
+        }
     }
 
     /**

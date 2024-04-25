@@ -8,4 +8,4 @@ If you press wrong you lose.
 There is also a debug mode that turns on if you press 'd'.
 ## Known problems
 * The game animations are smoother if you run from intellij
-## Youtube link
+## YouTube link
