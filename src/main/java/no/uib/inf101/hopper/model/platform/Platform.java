@@ -1,7 +1,7 @@
 package no.uib.inf101.hopper.model.platform;
 
 public class Platform {
-    private int x, width, height, platformNumber;
+    private final int x, width, height, platformNumber;
 
     private double y;
     private char platformSide, platformColor;

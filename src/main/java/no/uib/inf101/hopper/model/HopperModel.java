@@ -55,6 +55,9 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         }
     }
 
+    /**
+     * increases the velocity of the player and platform based on player position
+     */
     private void increaseVelocity() {
         if (getGameScore() % 11 == 0 && getGameScore() > 10 && velocity < 10) {
             velocity += 0.2;
