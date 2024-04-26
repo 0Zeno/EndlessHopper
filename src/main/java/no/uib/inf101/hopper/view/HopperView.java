@@ -106,10 +106,12 @@ public class HopperView extends JPanel {
         g2.setColor(colorTheme.getGameOverColor());
         g2.fill(gameOverScreen);
         g2.setColor(Color.WHITE);
-        g2.setFont(new Font("Arial", Font.BOLD, 40));
-        g2.drawString("Welcome to Hopper", 100, 300);
         g2.setFont(new Font("Arial", Font.ITALIC, 20));
-        g2.drawString("Press 'enter' to play", 100, 330);
+        g2.drawString("Welcome to", 100, 290);
+        g2.setFont(new Font("Arial", Font.BOLD, 40));
+        g2.drawString("Endless Hopper", 100, 330);
+        g2.setFont(new Font("Arial", Font.ITALIC, 20));
+        g2.drawString("Press 'enter' to play", 100, 360);
     }
 
     @Override

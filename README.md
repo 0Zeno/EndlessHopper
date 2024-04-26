@@ -3,10 +3,10 @@
 Start by running the code (best from intellij). 
 Press enter to start the game. You can either press left or right arrow. 
 To jump to the left or up on the left side you press left and to jump to the right side or up on the right side you press right. 
-If you press wrong you lose.
+If you press the wrong arrow key you loose.
 
 There is also a debug mode that turns on if you press 'd'.
 ## Known problems
 * The game animations are smoother if you run from intellij
 ## YouTube link
-https://youtu.be/gGfZiPM869c
+https://youtu.be/e229qdChbhM
