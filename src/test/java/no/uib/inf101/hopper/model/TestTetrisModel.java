@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static java.util.Objects.deepEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestTetrisModel {
@@ -79,11 +78,11 @@ public class TestTetrisModel {
     @Test
     public void testIncreaseVelocityByScore() {
         HopperModel model1 = new HopperModel();
-        assertTrue(model1.getVelocity() == 2.0);
+        assertEquals(2.0, model1.getVelocity());
 
         model1.setGameScore(11);
         model1.increaseVelocity();
-        assertTrue(model1.getVelocity() == 2.2);
+        assertEquals(2.2, model1.getVelocity());
 
     }
 

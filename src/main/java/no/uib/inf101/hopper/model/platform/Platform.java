@@ -45,6 +45,10 @@ public class Platform {
         return platformNumber;
     }
 
+    /**
+     * gets the platform x based on the side of the platform
+     * @return x coordinate of the platform
+     */
     public int getPlatformX() {
         if (platformSide == 'R') {
             return x * 2;
@@ -66,10 +70,17 @@ public class Platform {
         return colorOptions.charAt(index);
     }
 
+    /**
+     * Moves the platform down
+     * @param deltaY the amount added to the platforms y
+     */
     public void movePlatformDown(double deltaY) {
         y += deltaY;
     }
 
+    /**
+     * Moves a platform from under the screen to y = 0
+     */
     public void movePlatformToTop() {
         if (this.getPlatformY() > 798) {
             y = 0;

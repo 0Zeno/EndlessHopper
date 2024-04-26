@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlatformTest {
     @Test
-    public void TestGetPlatformX(){
+    public void TestSetPlatformSide(){
         Platform platform1 = new Platform(20, 'R', 10, 100, 25, 0, 'R');
         Platform platform2 = new Platform(10, 'L', 10, 100, 25, 0, 'R');
         platform2.setPlatformSide('R');
@@ -14,7 +14,7 @@ public class PlatformTest {
     }
 
     @Test
-    public void TestGetPlatformY(){
+    public void TestMovePlatformDownByFive(){
         Platform platform1 = new Platform(20, 'R', 10, 100, 25, 0, 'R');
         Platform platform2 = new Platform(20, 'R', 5, 100, 25, 0, 'R');
         platform2.movePlatformDown(5);
