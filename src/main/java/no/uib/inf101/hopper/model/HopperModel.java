@@ -1,11 +1,11 @@
 package no.uib.inf101.hopper.model;
 
-import no.uib.inf101.hopper.controller.IControllableHopperModel;
-import no.uib.inf101.hopper.model.player.HoppingPlayerBox;
-import no.uib.inf101.hopper.model.platform.Platform;
-import no.uib.inf101.hopper.view.IViewableHopperModel;
-
 import java.util.ArrayList;
+
+import no.uib.inf101.hopper.controller.IControllableHopperModel;
+import no.uib.inf101.hopper.model.platform.Platform;
+import no.uib.inf101.hopper.model.player.HoppingPlayerBox;
+import no.uib.inf101.hopper.view.IViewableHopperModel;
 
 public class HopperModel implements IViewableHopperModel, IControllableHopperModel {
     private GameState currentGameState;
@@ -50,7 +50,7 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
         return gameScore;
     }
 
-    protected void setGameScore(int gameScoreToSetTo){
+    protected void setGameScore(int gameScoreToSetTo) {
         gameScore = gameScoreToSetTo;
     }
 
@@ -64,7 +64,7 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
 
     @Override
     public int getTimerDelay() {
-        return 1;
+        return 10;
     }
 
     @Override
@@ -116,7 +116,8 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
     }
 
     /**
-     * Checks if the player is under the screen. If the player is then the game is over
+     * Checks if the player is under the screen. If the player is then the game is
+     * over
      */
     protected void checkIfPlayerUnderScreen() {
         if (playerBox.getPlayerY() > 700) {
@@ -150,9 +151,10 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
 
     /**
      * Method to check if a jump the player wants to do is allowed
+     * 
      * @param sideToJump the side the player box wants to jump to
-     * @param hopper the player box
-     * @param platforms the list of platforms
+     * @param hopper     the player box
+     * @param platforms  the list of platforms
      * @return ture if the hop is allowed
      */
     protected boolean isLeagleHop(char sideToJump, HoppingPlayerBox hopper,
@@ -163,6 +165,7 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
 
     /**
      * The method is used to get the next current platform number
+     * 
      * @return the next platform number after the player jumps
      */
     private int getNextPlatformNumber() {
@@ -175,7 +178,8 @@ public class HopperModel implements IViewableHopperModel, IControllableHopperMod
 
     /**
      * gets the nest platform that the player can jump to
-     * @param hopper the player box
+     * 
+     * @param hopper    the player box
      * @param platforms a list of platforms
      * @return returns the next platform that the player can jump to
      */
